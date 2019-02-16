@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="form.css">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<title>form</title>
+</head>
+<body>
+<div class="main">
+	<div class="s1">
+	<h2 align="center">career</h2>
+	<select name="career" id="career">
+	<option>select your career objective</option>
+	<option>i want to be in high position to live life happily</option>
+	<option>i want to explore my skills</option>
+</select>
+</div>
+
+	<div class="s2">
+		<h2>personal details</h2>
+		<input type="text" name="name" id="name" placeholder="enter your name"><br>
+		<input type="number" name="roll" id="roll" placeholder="enter your rollno"><br>
+		<input type="email" name="email" id="email" placeholder="enter your emailId"><br>
+	</div>
+	<div class="s2">
+		<h2>pg details</h2>
+		<select name="pg" id="pg">
+			<option>please enter your degree</option>
+<option>m.com</option>
+<option>B.tech</option>
+<option>mba</option>
+<option>MCA</option>
+		</select><br>
+		<input type="text" name="institute" id="pgins" placeholder="enter your clg name"><br>
+		<input type="text" name="per" id="pgper" placeholder="enter your percentage"><br>
+		<input type="text" name="yop" id="pgyop" placeholder="enter your year of passing"><br>
+
+	</div>
+	<div class="s2">
+		<h2>inter details</h2>
+		<select name="inter" id="inter">
+			<option>please enter your course</option>
+<option>inter</option>
+<option>poly</option>
+
+		</select><br>
+		<input type="text" name="institute" id="inins" placeholder="enter your clg name"><br>
+		<input type="text" name="per" id="inper" placeholder="enter your percentage"><br>
+		<input type="text" name="yop" id="inyop" placeholder="enter your yearofpassing"><br>
+
+	</div>
+	<div class="s2">
+		<h2>ssc details</h2>
+		<select name="ssc" id="ssc">
+			<option>please enter your course</option>
+<option>ssc</option>
+<option>cbse</option>
+
+		</select><br>
+		<input type="text" name="institute" id="sscins" placeholder="enter your clg name"><br>
+		<input type="text" name="per" id="sscper" placeholder="enter your percentage"><br>
+		<input type="text" name="yop" id="sscyop" placeholder="enter your yearofpassing"><br>
+
+	</div>
+	<div class="s3">
+		<h2>ug details</h2>
+		<select name="ug" id="ug">
+			<option>please enter your degree</option>
+<option>m.com</option>
+<option>m.tech</option>
+<option>mba</option>
+<option>MCA</option>
+		</select><br>
+		<input type="text" name="institute" id="ugins" placeholder="enter your clg name"><br>
+		<input type="text" name="per" id="ugper" placeholder="enter your per"><br>
+		<input type="text" name="yop" id="ugyop" placeholder="enter your yop"><br>
+
+	</div>
+
+	
+</div>
+<button id="button" onclick="submit()">submit</button>
+</body>
+</html>
+<script type="text/javascript">
+	function submit(){
+		var career=document.getElementById("career").value;
+		var name=document.getElementById("name").value;
+		var roll=document.getElementById("roll").value;
+		var email=document.getElementById("email").value;
+		var pgdegree=document.getElementById("pg").value;
+		var pgins=document.getElementById("pgins").value;
+		var pgper=document.getElementById("pgper").value;
+		var pgyop=document.getElementById("pgyop").value;
+		var inter=document.getElementById("inter").value;
+		var inins=document.getElementById("inins").value;
+		var inper=document.getElementById("inper").value;
+		var inyop=document.getElementById("inyop").value;
+		var sscdegree=document.getElementById("ssc").value;
+		var sscins=document.getElementById("sscins").value;
+		var sscper=document.getElementById("sscper").value;
+		var sscyop=document.getElementById("sscyop").value;
+		var ugdegree=document.getElementById("ug").value;
+		var ugins=document.getElementById("ugins").value;
+		var ugper=document.getElementById("ugper").value;
+		var ugyop=document.getElementById("ugyop").value;
+		
+		var indexedDB=window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB;
+        indexedDB ? console.log("sucess") : console.log("fail");
+        var open;
+        var result;
+        var store;
+       var tx;
+        var request = indexedDB.open("database",1);
+		request.onupgradeneeded=function(e){
+			open=e.target.result;
+			store=open.createObjectStore("resumedata",{keyPath:"name"});
+        
+		}
+request.onerror=function(e){
+     console.log("error"+e);
+	}
+	request.onsuccess=function(e){
+  open=e.target.result;
+  tx=open.transaction("resumedata","readwrite");
+  store=tx.objectStore("resumedata");
+  store.put({
+  	career:career,
+name:name,
+mail:email,
+education:[
+{
+	pgdegree:pg,
+pginstitute:pgins,
+pgpercentage:pgper,
+pgyearofpassing:pgyop
+},
+{
+	interdegree:inter,
+ininstitute:inins,
+inpercentage:inper,
+inyearofpassing:inyop
+},
+{
+	sscdegree:ssc,
+sscinstitute:sscins,
+sscpercentage:sscper,
+sscyearofpassing:sscyop
+},
+{
+uginstitute:ugins,
+ugpercentage:ugper,
+ugyearofpassing:ugyop
+}
+]
+  }
+  	);
+
+}
+window.open("index1.html","_self");
+}
+</script>

@@ -1,0 +1,51 @@
+{
+	"profile":{
+		"img":"i.jpg",
+		"name":"s.v.ayyappa reddy",
+		"roll":"12335"
+	},
+	"career":{
+"info":"i want to seek a position where iam"
+	},
+	"education":[
+		{
+			"sno":1,
+		"DEGRREE":"school",
+		"INSTITUTE":"aditya",
+		"per":"91",
+		"yop":"1999"
+	
+		},
+
+		{
+			"sno":2,
+		"DEGRREE":"b.tech",
+		"INSTITUTE":"dfgvfg",
+		"per":"91",
+		"yop":"2015"
+	
+		},
+		
+
+		{
+			"sno":3,
+		"DEGRREE":"b.tech",
+		"INSTITUTE":"dfgvfg",
+		"per":"91",
+		"yop":"2015"
+	
+		}
+		
+],
+	"language":[
+		{
+"lang":"english"
+		}, 
+		{
+"lang":"telugu"
+		},
+		{
+"lang":"hindi"
+		}
+	]
+}

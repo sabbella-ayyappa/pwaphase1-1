@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>::Resume Builder</title>
+	<link rel="stylesheet" type="text/css" href="form.css">
+</head>
+<body id="main">
+	<header>
+		<h1>create your resume profile</h1>
+	</header>
+<button><a href="form.html">add profile</a></button>
+</body>
+</html>
+<script type="text/javascript">
+	var indexedDB=window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB;
+        indexedDB ? console.log("sucess") : console.log("fail");
+        var open;
+        var result;
+        var store;
+       var tx;
+        var request = indexedDB.open("database",1);
+		request.onupgradeneeded=function(e){
+			open=e.target.result;
+			store=open.createObjectStore("resumedata",{keyPath:"name"});
+        
+		}
+request.onerror=function(e){
+     console.log("error"+e);
+	}
+	request.onsuccess=function(e){
+  open=e.target.result;
+  tx=open.transaction("resumedata","readwrite");
+  store=tx.objectStore("resumedata");
+  var info=store.getAll();
+  info.onsuccess=function(data){
+  	console.log(data);
+	  	display(data.target.result);
+  }
+  }
+  var body=document.querySelector("#main");
+  function display(d){
+  	for(i=0;i<d.length;i++)
+  	{
+  		var h3=document.createElement("h3");
+  		h3.innerHTML=d[i].name;
+  		body.append(h3);
+  		var a=document.createElement("a");
+  		a.classList.add("profile");
+  		a.setAttribute("href","resume.html?"+d[i].name);
+  		a.appendchild(h3);
+  		body.append(a);
+
+  	}
+  }
+</script>
